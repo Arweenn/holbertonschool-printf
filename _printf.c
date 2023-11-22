@@ -1,41 +1,36 @@
 #include "main.h"
-#include <stddef.h>
+
 /**
- * _printf - produces output according to a format
- * @format: the first argument
- * Return: the number of char
+ * _printf - produce output according to a format define by %: c, s, %
+ * @format: pointer to a string
+ * Return: the number of char printed
  */
+
 int _printf(const char *format, ...)
 {
-	int charCount;
-	size_t i;
-	va_list args;
-	convinfo convtable[] = {
-		{'c', printChar},
-		{'s', printString},
-		{'d', printInt},
-		{'i', printInt},
-		{'%', printPercent},
-	};
-	va_start(args, format);
-	while (*format)
+	int i = 0;
+	int count = 0;
+
+	va_list list;
+
+	va_start(list, format);
+	if (format ==  NULL || (format[0] == '%' && format[1] == '\0'))
 	{
-		if (*format == '%')
+		return (-1);
+	}
+	for (i = 0; format[i] != '\0'; i++)
+	{
+		if (format[i] == '%')
 		{
-			format++;
-			for (i = 0; i < sizeof(convtable) / sizeof(convtable[0]); i++)
-			{
-				if (*format == convtable[i].specifier)
-				{
-					convtable[i].function(&args);
-					break;
-				}
-			}
+			count += printformat(format[i + 1], list);
+			i++;
 		}
 		else
-			charCount += _putchar(*format);
-		format++;
+		{
+			count++;
+			_putchar(format[i]);
+		}
 	}
-	va_end(args);
-	return (charCount);
+	va_end(list);
+	return (count);
 }

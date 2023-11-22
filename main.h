@@ -1,38 +1,26 @@
 #ifndef MAIN_H
 #define MAIN_H
-
 #include <stdarg.h>
+#include <unistd.h>
 
 /**
- * our own putchar function
+ * struct checker - format handler
+ * @type: type
+ * @function: function
+ * Description: check every specific format and add the fucntion to them
  */
-int _putchar(char c);
 
-/**
- * function pointer type for conversion specifier functions
- */
-typedef void (*convfunction)(va_list *args);
-
-/**
- * structure to map conversion specifiers to their corresponding functions
- */
-typedef struct
+typedef struct checker
 {
-	char specifier;
-	convfunction function;
-} convinfo;
+	char type;
+	int (*function)(va_list);
+} checker;
 
-/**
- * function prototypes
- */
-void printChar(va_list *args);
-void printString(va_list *args);
-void printInt(va_list *args);
-void printPercent(va_list *args);
-
-/**
- * printf function, returns the number of char printed
- */
+int _putchar(char c);
 int _printf(const char *format, ...);
-
-#endif /* MAIN_H */
+int printchar(va_list list);
+int printstr(va_list list);
+int printperc(va_list list);
+int printint(va_list list);
+int printformat(char type, va_list list);
+#endif
