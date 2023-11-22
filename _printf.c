@@ -1,40 +1,41 @@
 #include "main.h"
+#include <stddef.h>
 /**
  * _printf - produces output according to a format
- * @format: character string
- * Return: the lenght of the input or -1 if error
+ * @format: the first argument
+ * Return: the number of char
  */
 int _printf(const char *format, ...)
 {
-	unsigned int i, nbr, str_nbr;
-
+	int charCount;
+	size_t i;
 	va_list args;
-
-	if (!format || (format[0] == '%' && format[1] == '\0')) 
-		return (-1);
-
+	convinfo convtable[] = {
+		{'c', printChar},
+		{'s', printString},
+		{'d', printInt},
+		{'i', printInt},
+		{'%', printPercent},
+	};
 	va_start(args, format);
-
-	for (i = 0; format[i] != '\0'; i++)
+	while (*format)
 	{
-		if (format[i] != '%')
-			_putchar(format[i]);
-
-		else if(format[i + 1] == 'c')
+		if (*format == '%')
 		{
-			_putchar(va_arg(args, int));
-			i++;
+			format++;
+			for (i = 0; i < sizeof(convtable) / sizeof(convtable[0]); i++)
+			{
+				if (*format == convtable[i].specifier)
+				{
+					convtable[i].function(&args);
+					break;
+				}
+			}
 		}
-		else if(format[i + 1] == 's')
-		{
-			str_nbr = _puts(va_arg(args, char *));
-			i++;
-			nbr += (str_nbr - 1);
-		}
-		else if(format[i + 1] == '%')
-			_putchar('%');
-		nbr += 1;
+		else
+			charCount += _putchar(*format);
+		format++;
 	}
 	va_end(args);
-	return(nbr);
+	return (charCount);
 }
