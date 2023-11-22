@@ -1,26 +1,40 @@
 #include "main.h"
 /**
- * printChar - prints a char
- * @args: arguments
- * implementation of conversion specifier functions
+ * print_char - function that prints the char from the list
+ * @list: list to choose the character
+ * Return: number of characters
+ * print_string - function that prints a string
  */
-void printChar(va_list *args)
-{
-	char c = va_arg(*args, int);
 
-	_putchar(c);
+int printchar(va_list list)
+{
+	char c = va_arg(list, int);
+
+	return (_putchar (c));
 }
-/**
- * printString - prints a string
- * @args: arguments
- */
-void printString(va_list *args)
-{
-	const char *s = va_arg(*args, const char*);
 
-	while (*s)
+int printstr(va_list list)
+{
+	int i = 0;
+	int count = 0;
+	char *str = va_arg(list, char*);
+
+	if (str == NULL)
 	{
-		_putchar(*s);
-		s++;
+		_putchar('(');
+		_putchar('n');
+		_putchar('u');
+		_putchar('l');
+		_putchar('l');
+		_putchar(')');
+		return (6);
 	}
+
+	while (str[i] != '\0')
+	{
+		_putchar(str[i]);
+		i++;
+		count++;
+	}
+	return (count);
 }
