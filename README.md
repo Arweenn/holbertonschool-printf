@@ -43,10 +43,10 @@ The conversion specifier (introduced by the character `%`) is a character that s
 
 - `d`: The `int` argument is converted to signed decimal notation.
 Example `main.c`:
-
+	
 	int main(void)
 	{
-		_printf("%d\n", 7);
+    		_printf("%d\n", 7);
 	}
 
 Output :
