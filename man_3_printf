@@ -6,7 +6,7 @@
 .SH SYNOPSIS
 .B #include \fB"main.h"
 
-.B int printf(const char *\fIformat\fB, ...);
+.B Prototype : int printf(const char *\fIformat\fB, ...);
 
 .SH DESCRIPTION
 The function \fB_printf()\fR writes output to \fIstdout\fR, the standard 
@@ -24,28 +24,29 @@ If an output error is encountered, -1 is returned.
 
 .B Format of the format string
 .in +2n
-The format string is a constant character string composed of zero or more 
+The format string is a constant array of characters. The function is composed of zero or more 
 directives: ordinary characters (not \fB%\fR) which are copied unchanged to 
-the output stream; and conversion specifications, each of which results in 
+the output stream; and conversion specifiers, each of which results in 
 fetching zero or more subsequent arguments. Conversion specification is 
 introduced by the character \fB%\fR and ends with a \fIconversion specifier\fR.
 
 .B Conversion Specifiers
 .in +2n
-A character that specifies the type of conversion to be applied. The 
-conversion specifiers and their meaning are:
+Conversion specifiers are characters that specifies the type of conversion to be applied. The 
+conversion specifiers and their meaning are the following :
 
 .RS
 .B d, i
 .in +2n
-The \fIint\fR argument is converted to signed decimal notation.
+The \fIchar\fR is converted to an integer and is associated with a decimal,
+whether it is positive or negative.
 .in
 .RE
 
 .RS
 .B c
 .in +2n
-The \fIint\fR argument is converted to an \fIunsigned char\fR, and the 
+The \fIchar\fR argument is converted to an \fIunsigned char\fR, and the 
 resulting character is written.
 .in
 .RE
@@ -53,7 +54,7 @@ resulting character is written.
 .RS
 .B s
 .in +2n
-The \fIconst char *\fR argument is expected to be a pointer to a character 
+The \fIchar *\fR argument is expected to be a pointer to a character 
 array (pointer to a string). Characters from the array are written starting 
 from the first element of the array and ending at, but not including, the 
 terminating null byte ('\\0').
@@ -63,13 +64,13 @@ terminating null byte ('\\0').
 .RS
 .B %
 .in +2n
-A '%' is written. No argument is converted. The complete conversion 
+A '%' is written. No argument is taken. The complete conversion 
 specification is '%%'.
 .in
 .RE
 
 .SH EXAMPLE
-To print the address of Holberton School in the form "37 Rue des Marchands, Toulouse, FRA 31000", followed by a new line, where \fIstreet\fR, \fIcity\fR, and \fIstate\fR are pointers to strings:
+To print the address of Holberton School, "37 Rue des Marchands, Toulouse, F 31000", followed by a new line, where \fIstreet\fR, \fIcity\fR, and \fIstate\fR are pointers to strings:
 
 .RS
 #include "main.h"
@@ -77,15 +78,13 @@ To print the address of Holberton School in the form "37 Rue des Marchands, Toul
 int main(void)
 
 {
-
 	char *street = "Rue des Marchands";
+        char *city = "Toulouse";
+        char state = 'F';
 
-	char *city = "Toulouse",
+        _printf("%d, %s, %s %c %i\n", 37, street, city, state, 31000);
 
-	char *state = "FRA";
-
-	printf("%d %s, %s, %s, %d\\n", 37, street, city, state, 31000);
-
+        return (0);
 }
 .RE
 
