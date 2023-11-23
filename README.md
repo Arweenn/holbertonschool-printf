@@ -42,8 +42,9 @@ Conversion Specifiers :
 The conversion specifier (introduced by the character `%`) is a character that specifies the type of conversion to be applied. The `_printf` function supports the following conversion specifiers:
 
 - `d`: The `int` argument is converted to signed decimal notation.
-Example `main.c`:
-	
+
+Example `main.c`:	
+
 	int main(void)
 	{
     		_printf("%d\n", 7);
@@ -55,6 +56,7 @@ Output :
 
 
 - `c`: The `int` argument is converted to an `unsigned char`.
+
 Example `main.c`:
 
     	int main(void)
@@ -68,6 +70,7 @@ Output :
 
 
 - `s`: The `const char *` argument is expected to be a pointer to a character array (aka. pointer to a string). Characters from the array are written starting from the first element of the array and ending at, but not including, the terminating null byte `\0`.
+
 Example `main.c`:
 
     	int main(void)
@@ -80,6 +83,7 @@ Output :
     Hello, World!
 
 - `%`: A `%` is written. No argument is converted. The complete conversion specification is `%%`.
+
 Example `main.c`:
 
 	int main(void)
