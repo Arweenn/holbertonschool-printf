@@ -109,3 +109,7 @@ Test - (comment ? + exemples) + valgrind pour les failles mémoire…
 ## Flowcharts
 
 Flowcharts
+
+## Authors
+
+Dumont Arwen and Pavaux Mathilde
