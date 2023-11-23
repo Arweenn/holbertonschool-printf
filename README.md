@@ -6,59 +6,12 @@ The `_printf()` function is a partial recreation of the C standard library funct
 
 ## Requirements
 
-The `_printf()` function was coded on Ubuntu 20.04 LTS using gcc, using the options -Wall -Werror -Wextra -pedantic -std=gnu89
+The `_printf()` function was coded on Ubuntu 20.04 LTS using gcc, using the options `-Wall -Werror -Wextra -pedantic -std=gnu89`
 
 
 ## Compilation
 
-The compilation was possible via this main.c file :
-
-    #include <limits.h>
-    #include <stdio.h>
-    #include "main.h"
-
-    /**
-    * main - Entry point
-    *
-    * Return: Always 0
-    */
-    int main(void)
-    {
-    int len;
-    int len2;
-    unsigned int ui;
-    void *addr;
-
-    len = _printf("Let's try to printf a simple sentence.\n");
-    len2 = printf("Let's try to printf a simple sentence.\n");
-    ui = (unsigned int)INT_MAX + 1024;
-    addr = (void *)0x7ffe637541f0;
-    _printf("Length:[%d, %i]\n", len, len);
-    printf("Length:[%d, %i]\n", len2, len2);
-    _printf("Negative:[%d]\n", -762534);
-    printf("Negative:[%d]\n", -762534);
-    _printf("Unsigned:[%u]\n", ui);
-    printf("Unsigned:[%u]\n", ui);
-    _printf("Unsigned octal:[%o]\n", ui);
-    printf("Unsigned octal:[%o]\n", ui);
-    _printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);
-    printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);
-    _printf("Character:[%c]\n", 'H');
-    printf("Character:[%c]\n", 'H');
-    _printf("String:[%s]\n", "I am a string !");
-    printf("String:[%s]\n", "I am a string !");
-    _printf("Address:[%p]\n", addr);
-    printf("Address:[%p]\n", addr);
-    len = _printf("Percent:[%%]\n");
-    len2 = printf("Percent:[%%]\n");
-    _printf("Len:[%d]\n", len);
-    printf("Len:[%d]\n", len2);
-    _printf("Unknown:[%r]\n");
-    printf("Unknown:[%r]\n");
-    return (0);
-    }
-
-And was tested via this gcc command :
+The compilation was possible via this gcc command and its following options :
 
     gcc -Wall -Wextra -Werror -pedantic -std=gnu89 -Wno-format *.c
     ./printf
@@ -67,7 +20,78 @@ And was tested via this gcc command :
 
 ## Usage of `_printf()` function
 
-Des exemples d'utilisation de la fonction _printf (code snippets / screenshots…) avec le résultat en STDOUT
+## Usage of `_printf()` function
+
+The function `_printf` writes output to standard output. The function writes under the control of a format string that specifies how subsequent arguments are converted for output.
+
+Prototype: `int _printf(const char *format, ...);`
+
+
+Return Value :
+
+Upon successful return, `_printf` returns the number of characters printed (excluding the terminating null byte used to end output to strings). If an output error is encountered, the function returns -1.
+
+Format of the Argument String :
+
+The `format` string argument is a constant character string composed of zero or more directives :
+- ordinary characters (not `%`) wich are copied unchanged to the output stream;
+- conversions specifications, each of which results in fetching zero or more subsequent arguments.
+Conversion specification is introduced by the character `%` and ends with a conversion specifier.
+
+
+Conversion Specifiers :
+
+The conversion specifier (introduced by the character `%`) is a character that specifies the type of conversion to be applied. The `_printf` function supports the following conversion specifiers:
+
+- `d`: The `int` argument is converted to signed decimal notation.
+Example `main.c`:
+
+    int main(void)
+    {
+    _printf("%d\n", 7);
+    }
+
+Output :
+
+    7
+
+
+- `c`: The `int` argument is converted to an `unsigned char`.
+Example `main.c`:
+
+    int main(void)
+    {
+    _printf("%c\n", 48);
+    }
+
+Output :
+
+    0
+
+
+- `s`: The `const char *` argument is expected to be a pointer to a character array (aka. pointer to a string). Characters from the array are written starting from the first element of the array and ending at, but not including, the terminating null byte `\0`.
+Example `main.c`:
+
+    int main(void)
+    {
+    _printf("%s\n", "Hello, World!");
+    }
+
+Output :
+
+    Hello, World!
+
+- `%`: A `%` is written. No argument is converted. The complete conversion specification is `%%`.
+Example `main.c`:
+
+    int main(void)
+    {
+    _printf("%%\n");
+    }
+
+Output :
+
+    %
 
 
 ## Man page
@@ -77,9 +101,9 @@ Enter `man _printf`
 
 ## Testing
 
-Test Test Test Test
+Test - (comment ? + exemples) + valgrind pour les failles mémoire…
 
 
 ## Flowcharts
 
-Flowcharts Flowcharts Flowcharts
+Flowcharts
