@@ -20,8 +20,6 @@ The compilation was possible via this gcc command and its following options :
 
 ## Usage of `_printf()` function
 
-## Usage of `_printf()` function
-
 The function `_printf` writes output to standard output. The function writes under the control of a format string that specifies how subsequent arguments are converted for output.
 
 Prototype: `int _printf(const char *format, ...);`
@@ -46,10 +44,10 @@ The conversion specifier (introduced by the character `%`) is a character that s
 - `d`: The `int` argument is converted to signed decimal notation.
 Example `main.c`:
 
-    int main(void)
-    {
-    _printf("%d\n", 7);
-    }
+	int main(void)
+	{
+		_printf("%d\n", 7);
+	}
 
 Output :
 
@@ -59,10 +57,10 @@ Output :
 - `c`: The `int` argument is converted to an `unsigned char`.
 Example `main.c`:
 
-    int main(void)
-    {
-    _printf("%c\n", 48);
-    }
+    	int main(void)
+    	{
+    		_printf("%c\n", 48);
+    	}
 
 Output :
 
@@ -72,10 +70,10 @@ Output :
 - `s`: The `const char *` argument is expected to be a pointer to a character array (aka. pointer to a string). Characters from the array are written starting from the first element of the array and ending at, but not including, the terminating null byte `\0`.
 Example `main.c`:
 
-    int main(void)
-    {
-    _printf("%s\n", "Hello, World!");
-    }
+    	int main(void)
+    	{
+    		_printf("%s\n", "Hello, World!");
+    	}
 
 Output :
 
@@ -84,10 +82,10 @@ Output :
 - `%`: A `%` is written. No argument is converted. The complete conversion specification is `%%`.
 Example `main.c`:
 
-    int main(void)
-    {
-    _printf("%%\n");
-    }
+	int main(void)
+	{
+    		_printf("%%\n");
+	}
 
 Output :
 
