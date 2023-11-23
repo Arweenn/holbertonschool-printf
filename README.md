@@ -98,7 +98,7 @@ Output :
 
 ## Man page
 
-Enter `man _printf`
+Enter `man_3_printf`
 
 
 ## Testing
