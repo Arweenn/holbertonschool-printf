@@ -1,23 +1,23 @@
 #include "main.h"
 /**
- * print_char - function that prints the char from the list
- * @list: list to choose the character
+ * printchar - function that prints a char
+ * @args: list of arguments which the char comes from
  * Return: number of characters
- * print_string - function that prints a string
+ * printstr - function that prints a string
  */
 
-int printchar(va_list list)
+int printchar(va_list args)
 {
-	char c = va_arg(list, int);
+	char c = va_arg(args, int);
 
 	return (_putchar (c));
 }
 
-int printstr(va_list list)
+int printstr(va_list args)
 {
 	int i = 0;
 	int count = 0;
-	char *str = va_arg(list, char*);
+	char *str = va_arg(args, char*);
 
 	if (str == NULL)
 	{

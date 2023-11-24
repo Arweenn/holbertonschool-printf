@@ -1,39 +1,39 @@
 #include "main.h"
 /**
- * print_number - function that prints the number neg. or pos. with digit
- * @list: list the value of the number
+ * printint - prints a negative or positive int
+ * @args: next argument that takes the values of the int
  * Return: number of character
  */
-int printint(va_list list)
+int printint(va_list args)
 {
-	long int num = va_arg(list, int);
-	long int absolutenumber = 0;
-	long int tempnumber = 0;
-	long int digitposition = 1;
+	long int num = va_arg(args, int);
+	long int absolutenum = 0;
+	long int tempnum = 0;
+	long int numberofdigit = 1;
 	int count = 0;
 
 	if (num < 0)
 	{
-		absolutenumber = (num * -1);
+		absolutenum = (num * -1);
 		_putchar('-');
 		count++;
 	}
 	else
 	{
-		absolutenumber = num;
+		absolutenum = num;
 	}
 
-	tempnumber = absolutenumber;
+	tempnum = absolutenum;
 
-	while (tempnumber > 9)
+	while (tempnum >= 10)
 	{
-		tempnumber = tempnumber / 10;
-		digitposition = digitposition * 10;
+		tempnum = tempnum / 10;
+		numberofdigit = numberofdigit * 10;
 	}
-	while (digitposition >= 1)
+	while (numberofdigit >= 1)
 	{
-		_putchar(((absolutenumber / digitposition) % 10) + '0');
-		digitposition = digitposition / 10;
+		_putchar(((absolutenum / numberofdigit) % 10) + '0');
+		numberofdigit = numberofdigit / 10;
 		count++;
 	}
 
