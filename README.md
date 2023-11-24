@@ -49,6 +49,8 @@ In order to test it in our local terminal, we compile it using the command seen 
 Following those steps, we should have this output :
 
     37, Rue des Marchands, Toulouse F 31000
+
+
 ## Files Description
 
 Here is a little description of each file made in order to create our program :
@@ -68,6 +70,7 @@ Here is a little description of each file made in order to create our program :
 - `_printperc.c` : handle the %% and prints a %
 
 - `main.h` : our header file that contains a structure to match the right function with the conversion specifier and the prototypes
+
 
 ## Man page
 

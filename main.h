@@ -1,19 +1,31 @@
 #ifndef MAIN_H
 #define MAIN_H
+#include <stdarg.h>
+#include <unistd.h>
 
 /**
- * unistd.h - library for the function 'write'
- * stdlib.h - library for the functions 'malloc', 'free'
- * stdarg.h - library for the functions 'va_start',
- *      'va_end', 'va_arg', 'va_copy'
+ * struct checker - format handler
+ * @type: char representing a datatype
+ * @function: pointer to function to print according to a specific datatype
+ *
+ * Description: check every specific format and add the fucntion to them
  */
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdarg.h>
+typedef struct checker
+{
+	char type;
+	int (*function)(va_list);
+} checker;
 
+/**
+ * _putchar - prints a char
+ * @c: char
+ * Return: count of byte
+ */
 int _putchar(char c);
-int _puts(char *str);
-
 int _printf(const char *format, ...);
-
-#endif
+int printchar(va_list list);
+int printstr(va_list list);
+int printperc(va_list list);
+int printint(va_list list);
+int printformat(char type, va_list list);
+#endif /**MAIN_H*/
