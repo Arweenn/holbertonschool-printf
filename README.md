@@ -6,8 +6,11 @@ The `_printf()` function is a partial recreation of the C standard library funct
 
 ## Requirements
 
-The `_printf()` function was coded on Ubuntu 20.04 LTS using gcc, using the options `-Wall -Werror -Wextra -pedantic -std=gnu89`
+- The `_printf()` function was coded on Ubuntu 20.04 LTS using gcc, using the options `-Wall -Werror -Wextra -pedantic -std=gnu89`
 
+- All codes should be written in a Betty Style Documentation.
+
+- All files should contain no more than five functions.
 
 ## Compilation
 
@@ -18,98 +21,107 @@ The compilation was possible via this gcc command and its following options :
 
 
 
-## Usage of `_printf()` function
+## Usage/Examples
 
-The function `_printf` writes output to standard output. The function writes under the control of a format string that specifies how subsequent arguments are converted for output.
+To use our `_printf()` function, we will use this `main.c` file as a test file :
 
-Prototype: `int _printf(const char *format, ...);`
+    #include "main.h"
 
+    /**
+    * main - Entry point
+    *
+    * Return: Always 0
+    */
+    int main(void)
+    {
+    char *street = "Rue des Marchands";
+    char *city = "Toulouse";
+    char state = 'F';
 
-Return Value :
+    _printf("%d, %s, %s %c %i\n", 37, street, city, state, 31000);
 
-Upon successful return, `_printf` returns the number of characters printed (excluding the terminating null byte used to end output to strings). If an output error is encountered, the function returns -1.
-
-Format of the Argument String :
-
-The `format` string argument is a constant character string composed of zero or more directives :
-- ordinary characters (not `%`) wich are copied unchanged to the output stream;
-- conversions specifications, each of which results in fetching zero or more subsequent arguments.
-Conversion specification is introduced by the character `%` and ends with a conversion specifier.
-
-
-Conversion Specifiers :
-
-The conversion specifier (introduced by the character `%`) is a character that specifies the type of conversion to be applied. The `_printf` function supports the following conversion specifiers:
-
-- `d`: The `int` argument is converted to signed decimal notation.
-
-Example `main.c`:	
-
-	int main(void)
-	{
-    		_printf("%d\n", 7);
-	}
-
-Output :
-
-    7
+    return (0);
+    }
 
 
-- `c`: The `int` argument is converted to an `unsigned char`.
+In order to test it in our local terminal, we compile it using the command seen above.
 
-Example `main.c`:
+Following those steps, we should have this output :
 
-    	int main(void)
-    	{
-    		_printf("%c\n", 48);
-    	}
+    37, Rue des Marchands, Toulouse F 31000
+## Files Description
 
-Output :
+Here is a little description of each file made in order to create our program :
 
-    0
+- `main.c` : calls the printf function
 
+- `_printf.c` : contains the source code of our function that is called in our main.c
 
-- `s`: The `const char *` argument is expected to be a pointer to a character array (aka. pointer to a string). Characters from the array are written starting from the first element of the array and ending at, but not including, the terminating null byte `\0`.
+- `_printformat.c` : match the conversion specifier with the right print function
 
-Example `main.c`:
+- `_putchar.c` : prints a char
 
-    	int main(void)
-    	{
-    		_printf("%s\n", "Hello, World!");
-    	}
+- `_printint.c` : prints an integer, positive or negative with decimals
 
-Output :
+- `_printcharstr.c` : prints a char or a string
 
-    Hello, World!
+- `_printperc.c` : handle the %% and prints a %
 
-- `%`: A `%` is written. No argument is converted. The complete conversion specification is `%%`.
-
-Example `main.c`:
-
-	int main(void)
-	{
-    		_printf("%%\n");
-	}
-
-Output :
-
-    %
-
+- `main.h` : our header file that contains a structure to match the right function with the conversion specifier and the prototypes
 
 ## Man page
 
-Enter `man_3_printf`
+The creation of our Man Page was possible following those steps :
+
+- Create a vi text file named man_3_printf; 
+- Find where the man pages are located in your terminal, for us it was :   
+
+        /usr/share/man/
+
+- Do a `cp` command to create the man in the correct folder :
+
+        cp man_3_printf /usr/share/man/man1/man_3_printf.1
+    
+- Do a `gzip` command (a file compression and decompression tool) :
+
+        gzip /usr/share/man/man1/man_3_printf.1
+
+ - Do a `man man_3_printf` to execute and therefore open the man page :
+        
+        man man_3_printf
+
+In this man page, we can find a description of our `_printf()` function, its return value and which options you can use, depending on what you intend to print. 
 
 
-## Testing
 
-Test - (comment ? + exemples) + valgrind pour les failles mémoire…
+## Flowchart
+
+![Image](https://github.com/Arweenn/holbertonschool-printf/blob/Arwen/Flowchart%20-%20_printf().png)
 
 
-## Flowcharts
+## Resources
 
-Flowcharts
+In order to help us into completing our project, we searched for some resources, as :
 
-## Authors
+- For the functions :
+The file "Secrets of printf()", available on the porject's page
 
-Dumont Arwen and Pavaux Mathilde
+- For the man page :
+A website about how to create it :
+
+https://www.cyberciti.biz/faq/linux-unix-creating-a-manpage/
+
+And another about how to organize and present it :
+
+https://www.linuxhowtos.org/System/creatingman.htm
+
+- For the Flowchart, we used the school's concept page :
+    
+https://intranet.hbtn.io/concepts/895
+
+
+
+## Authors 
+
+This READ ME file has been written by Dumont Arwen (Arweenn, on GitHub) and Pavaux Mathilde (mathpvx, on GitHub).
+
