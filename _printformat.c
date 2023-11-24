@@ -1,15 +1,14 @@
 #include "main.h"
 
 /**
- * printformat - Function to search the specificateur
- * @type: The type is the char to be check on the struct specifier
- * @list: char from list
- * Return: count of charactere printed
+ * printformat - match the specifier with the right print function
+ * @type: char to check
+ * @args: next argument containing the value to asset to the char
+ * Return: number of characters printed
  */
-int printformat(const char type, va_list list)
+int printformat(const char type, va_list args)
 {
-	int j = 0;
-	int count = 0;
+	int i = 0;
 
 	checker specifier[] = {
 		{'c', printchar},
@@ -19,17 +18,15 @@ int printformat(const char type, va_list list)
 		{'i', printint},
 		{'\0', NULL}
 	};
-	while (specifier[j].type != '\0')
+	while (specifier[i].type != '\0')
 	{
-		if (type == specifier[j].type)
+		if (type == specifier[i].type)
 		{
-			count++;
-			return (specifier[j].function(list));
+			return (specifier[i].function(args));
 		}
-		j++;
+		i++;
 	}
 	_putchar('%');
 	_putchar(type);
-	count += 2;
-	return (count);
+	return (2);
 }

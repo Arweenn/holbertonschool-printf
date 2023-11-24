@@ -1,11 +1,11 @@
 #include "main.h"
 /**
- * print_percent - function that handle the case %%
- * @list: list to recognize the case
+ * print_percent - prints % if encounters %%
+ * @args: list of arguments unused in the body
  * Return: number of characters
  */
-int printperc(va_list __attribute__((unused)) list)
+int printperc(va_list __attribute__((unused)) args)
 {
-        _putchar('%');
-        return (1);
+	_putchar('%');
+	return (1);
 }

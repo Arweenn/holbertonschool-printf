@@ -1,19 +1,19 @@
 #include "main.h"
 
 /**
- * _printf - produce output according to a format define by %: c, s, %
+ * _printf - produce output according to a format
  * @format: pointer to a string
  * Return: the number of char printed
  */
 
 int _printf(const char *format, ...)
 {
-	int i = 0;
+	int i;
 	int count = 0;
 
-	va_list list;
+	va_list args;
 
-	va_start(list, format);
+	va_start(args, format);
 	if (format ==  NULL || (format[0] == '%' && format[1] == '\0'))
 	{
 		return (-1);
@@ -22,7 +22,7 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			count += printformat(format[i + 1], list);
+			count += printformat(format[i + 1], args);
 			i++;
 		}
 		else
@@ -31,6 +31,6 @@ int _printf(const char *format, ...)
 			_putchar(format[i]);
 		}
 	}
-	va_end(list);
+	va_end(args);
 	return (count);
 }
